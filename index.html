@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>César Vallejo (@cesarvallejo.oficial) • Fotos y videos de Instagram</title>
+    <!-- Framework Tailwind CSS para diseño responsivo y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fuente tipográfica limpia estilo Instagram / Canva -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Phosphor Icons para fidelidad visual tipo Instagram -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* Configuración de tipografía y colores base */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fffcf3; /* Tono crema/papel literario cálido tipo Canva/Instagram limpio */
+            color: #1c1917;
+            overflow-x: hidden;
+        }
+
+        /* Anillo degradado clásico de historias de Instagram */
+        .ig-story-ring {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 3px;
+        }
+
+        /* Animación suave para el corazón de Me Gusta */
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.35); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-animate {
+            animation: heartPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Barra de desplazamiento personalizada para las listas de seguidores */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1efea;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Transición suave para modales */
+        .modal-backdrop {
+            transition: opacity 0.25s ease;
+        }
+        .modal-content {
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center selection:bg-stone-300">
+
+    <!-- BARRA SUPERIOR DE NAVEGACIÓN ESTILO INSTAGRAM -->
+    <header class="w-full sticky top-0 z-30 bg-[#f7f5f0]/95 backdrop-blur-md border-b border-stone-200/80">
+        <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-stone-900" style="font-family: 'Inter', sans-serif;">Instagram</span>
+            </div>
+            <div class="flex items-center gap-4 text-stone-800 text-2xl">
+                <i class="ph ph-house cursor-pointer hover:opacity-70 transition"></i>
+                <i class="ph ph-paper-plane-tilt cursor-pointer hover:opacity-70 transition"></i>
+                <i class="ph ph-compass cursor-pointer hover:opacity-70 transition"></i>
+                <i class="ph ph-heart cursor-pointer hover:opacity-70 transition"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL DEL PERFIL -->
+    <main class="w-full max-w-4xl mx-auto px-4 pt-6 pb-16 flex-1">
+        
+        <!-- CABECERA DEL PERFIL -->
+        <section class="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-12 pb-8 border-b border-stone-200">
+            
+            <!-- FOTO DE PERFIL INTERACTIVA (Al presionar se agranda tal cual Instagram) -->
+            <div class="flex-shrink-0">
+                <button id="profilePicBtn" aria-label="Ver foto de perfil en grande" class="group relative rounded-full ig-story-ring cursor-pointer focus:outline-none transition-transform duration-200 hover:scale-[1.03] active:scale-95 shadow-sm">
+                    <div class="bg-[#f7f5f0] p-1 rounded-full">
+                        <img 
+                            id="mainProfileImage"
+                            src="https://mestasediciones.com/storage/2026/07/Cesar-Vallejo-retrato-v2.png" 
+                            alt="César Vallejo" 
+                            onerror="this.src='https://placehold.co/400x400/292524/f7f5f0?text=C%C3%A9sar+Vallejo'"
+                            class="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover grayscale contrast-110"
+                        >
+                    </div>
+                </button>
+            </div>
+
+            <!-- INFORMACIÓN Y ESTADÍSTICAS DEL PERFIL -->
+            <div class="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left w-full">
+                
+                <!-- Nombre de usuario y Botones de acción -->
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 mb-4">
+                    <h1 class="text-xl sm:text-2xl font-normal text-stone-900 flex items-center gap-1.5">
+                        cesar.vallejo
+                        <!-- Insignia de verificado -->
+                        <svg class="w-5 h-5 text-[#0095f6]" viewBox="0 0 40 40" fill="currentColor">
+                            <path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"></path>
+                        </svg>
+                    </h1>
+
+                    <!-- Botón Seguir / Siguiendo -->
+                    <button 
+                        id="mainFollowBtn" 
+                        type="button"
+                        class="px-5 py-1.5 rounded-lg font-semibold text-sm bg-[#0095f6] text-white hover:bg-[#1877f2] transition-all duration-200 shadow-xs cursor-pointer active:scale-95"
+                    >
+                        Seguir
+                    </button>
+                </div>
+
+                <!-- CONTADORES INTERACTIVOS (Publicaciones / 28 Seguidores / 18 Seguidos) -->
+                <div class="flex items-center justify-around sm:justify-start w-full sm:w-auto gap-4 sm:gap-9 mb-4 py-2 sm:py-0 border-y sm:border-y-0 border-stone-200/80 text-xs sm:text-base">
+                    <div class="flex flex-col sm:flex-row items-center sm:gap-1">
+                        <span class="font-bold text-stone-900">9</span>
+                        <span class="text-stone-700">publicaciones</span>
+                    </div>
+
+                    <!-- BOTÓN: 28 SEGUIDORES -->
+                    <button 
+                        id="btnFollowers28"
+                        type="button"
+                        onclick="openFollowersModal('followers')"
+                        class="flex flex-col sm:flex-row items-center sm:gap-1 hover:opacity-70 transition cursor-pointer focus:outline-none"
+                    >
+                        <span id="followersCountDisplay" class="font-bold text-stone-900">28</span>
+                        <span class="text-stone-700">seguidores</span>
+                    </button>
+
+                    <!-- BOTÓN: 18 SEGUIDOS -->
+                    <button 
+                        id="btnFollowing18"
+                        type="button"
+                        onclick="openFollowersModal('following')"
+                        class="flex flex-col sm:flex-row items-center sm:gap-1 hover:opacity-70 transition cursor-pointer focus:outline-none"
+                    >
+                        <span id="followingCountDisplay" class="font-bold text-stone-900">18</span>
+                        <span class="text-stone-700">seguidos</span>
+                    </button>
+                </div>
+
+                <!-- BIOGRAFÍA DE CÉSAR VALLEJO -->
+                <div class="text-sm leading-relaxed text-stone-800 max-w-lg space-y-0.5">
+                    <p class="font-bold text-stone-950">César Vallejo</p>
+                    <p class="text-stone-500 text-xs font-medium">Poeta • Escritor • Periodista</p>
+                    <p>🇵🇪 Santiago de Chuco (1892) — 🇫🇷 París (1938)</p>
+                    <p>📜 Autor de <em>Los heraldos negros</em>, <em>Trilce</em> y <em>Poemas humanos</em>.</p>
+                    <p class="italic text-stone-600">"Hay golpes en la vida, tan fuertes... ¡Yo no sé!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑAS DE PUBLICACIONES -->
+        <div class="flex items-center justify-center gap-8 sm:gap-12 text-xs font-semibold tracking-widest uppercase text-stone-500">
+            <div class="flex items-center gap-1.5 py-3.5 border-t-2 border-stone-900 text-stone-900 -mt-[1px] cursor-pointer">
+                <i class="ph ph-squares-four text-base"></i>
+                <span>Publicaciones</span>
+            </div>
+            <div class="flex items-center gap-1.5 py-3.5 hover:text-stone-800 transition cursor-pointer" onclick="openPostModal(2)">
+                <i class="ph ph-book-open text-base"></i>
+                <span>Poemarios</span>
+            </div>
+            <div class="flex items-center gap-1.5 py-3.5 hover:text-stone-800 transition cursor-pointer" onclick="openFollowersModal('followers')">
+                <i class="ph ph-user-square text-base"></i>
+                <span>Etiquetadas</span>
+            </div>
+        </div>
+
+        <!-- CUADRÍCULA DE POSTS (3 COLUMNAS ESTILO INSTAGRAM) -->
+        <section id="postsGrid" class="grid grid-cols-3 gap-1 sm:gap-4 mt-1">
+            <!-- Los posts se renderizan dinámicamente con JS para garantizar consistencia con el visor modal -->
+        </section>
+
+    </main>
+
+    <!-- =====================================================================
+         MODAL 1: VISOR DE PUBLICACIÓN EN GRANDE (POST MODAL)
+         Incluye iconos de Me gusta (interactivo rojo), Comentarios y Enviar
+    ====================================================================== -->
+    <div id="postModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 backdrop-blur-xs p-3 sm:p-6 modal-backdrop">
+        <div class="bg-white rounded-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col md:flex-row shadow-2xl modal-content relative">
+            
+            <!-- Botón cerrar -->
+            <button onclick="closePostModal()" aria-label="Cerrar publicación" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer">
+                <i class="ph ph-x text-lg"></i>
+            </button>
+
+            <!-- Columna Izquierda: Imagen grande del post -->
+            <div class="w-full md:w-3/5 bg-stone-950 flex items-center justify-center max-h-[50vh] md:max-h-[85vh] overflow-hidden">
+                <img 
+                    id="modalPostImg" 
+                    src="" 
+                    alt="Publicación de César Vallejo" 
+                    class="w-full h-full object-contain"
+                >
+            </div>
+
+            <!-- Columna Derecha: Detalles, descripción e iconos de Instagram -->
+            <div class="w-full md:w-2/5 flex flex-col justify-between bg-[#fdfcfb] border-l border-stone-200">
+                
+                <!-- Cabecera del post -->
+                <div class="p-4 border-b border-stone-200 flex items-center gap-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Cesar_vallejo_1929.jpg/150px-Cesar_vallejo_1929.jpg" onerror="this.src='https://placehold.co/100x100/292524/f7f5f0?text=CV'" alt="César Vallejo" class="w-9 h-9 rounded-full object-cover grayscale border border-stone-300">
+                    <div>
+                        <p class="text-sm font-semibold text-stone-900 leading-none">cesar.vallejo</p>
+                        <p id="modalPostLocation" class="text-xs text-stone-500 mt-1">París, Francia</p>
+                    </div>
+                </div>
+
+                <!-- Cuerpo / Pie de foto literario -->
+                <div class="p-4 overflow-y-auto flex-1 space-y-4 custom-scrollbar text-sm">
+                    <div class="flex items-start gap-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Cesar_vallejo_1929.jpg/150px-Cesar_vallejo_1929.jpg" onerror="this.src='https://placehold.co/100x100/292524/f7f5f0?text=CV'" alt="César Vallejo" class="w-8 h-8 rounded-full object-cover grayscale flex-shrink-0 mt-0.5">
+                        <div>
+                            <p class="text-stone-800 leading-relaxed">
+                                <span class="font-semibold text-stone-950 mr-1">cesar.vallejo</span>
+                                <span id="modalPostCaption"></span>
+                            </p>
+                            <p id="modalPostDate" class="text-xs text-stone-400 mt-2 uppercase tracking-wide"></p>
+                        </div>
+                    </div>
+
+                    <!-- Comentario destacado de un amigo histórico -->
+                    <div id="modalPostFriendComment" class="flex items-start gap-3 pt-2 border-t border-stone-100">
+                        <div class="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center text-xs font-bold text-stone-600 flex-shrink-0">AO</div>
+                        <div>
+                            <p class="text-stone-700 text-xs leading-relaxed">
+                                <span id="modalCommentAuthor" class="font-semibold text-stone-900 mr-1"></span>
+                                <span id="modalCommentText"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARRA DE ICONOS DE INSTAGRAM (Solo Me Gusta es interactivo y se pone en rojo) -->
+                <div class="p-4 border-t border-stone-200 bg-white">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-4">
+                            <!-- ICONO ME GUSTA (CORAZÓN INTERACTIVO QUE SE PONE ROJO) -->
+                            <button 
+                                id="modalLikeBtn" 
+                                type="button"
+                                onclick="togglePostLike()"
+                                aria-label="Me gusta"
+                                class="focus:outline-none cursor-pointer transition-transform active:scale-90"
+                            >
+                                <svg id="modalHeartSvg" class="w-7 h-7 text-stone-800 transition-colors duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                </svg>
+                            </button>
+
+                            <!-- ICONO COMENTARIOS (Nube de comentarios de Instagram - No interactivo) -->
+                            <div class="text-stone-800 cursor-default select-none" title="Comentarios">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
+                                </svg>
+                            </div>
+
+                            <!-- ICONO FLECHA DE ENVIAR DE INSTAGRAM (No interactivo) -->
+                            <div class="text-stone-800 cursor-default select-none" title="Enviar">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Icono guardar decorativo -->
+                        <div class="text-stone-800 cursor-default select-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Contador de Me gusta -->
+                    <p class="text-sm font-semibold text-stone-900">
+                        <span id="modalLikesCount">1,420</span> Me gusta
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         MODAL 2: FOTO DE PERFIL EN GRANDE (TAL CUAL INSTAGRAM)
+    ====================================================================== -->
+    <div id="avatarModal" onclick="closeAvatarModal()" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 modal-backdrop cursor-pointer">
+        <div onclick="event.stopPropagation()" class="relative flex flex-col items-center modal-content">
+            <button onclick="closeAvatarModal()" aria-label="Cerrar foto de perfil" class="mb-4 self-end w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25 transition cursor-pointer">
+                <i class="ph ph-x text-xl"></i>
+            </button>
+            <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                <img 
+                    src="https://mestasediciones.com/storage/2026/07/Cesar-Vallejo-retrato-v2.png" 
+                    onerror="this.src='https://placehold.co/400x400/292524/f7f5f0?text=C%C3%A9sar+Vallejo'"
+                    alt="César Vallejo Foto de Perfil" 
+                    class="w-full h-full object-cover grayscale contrast-110"
+                >
+            </div>
+            <p class="text-white/80 text-sm font-medium mt-4">@cesar.vallejo</p>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         MODAL 3: LISTA DE SEGUIDORES (28) Y SEGUIDOS (18)
+         Círculo de amigos e intelectuales de César Vallejo
+    ====================================================================== -->
+    <div id="connectionsModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/65 backdrop-blur-xs p-4 modal-backdrop">
+        <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[82vh] modal-content">
+            
+            <!-- Cabecera del modal con pestañas -->
+            <div class="border-b border-stone-200 px-4 py-3 flex items-center justify-between">
+                <div class="w-8"></div>
+                <h2 id="connectionsModalTitle" class="font-bold text-base text-stone-900">Seguidores</h2>
+                <button onclick="closeConnectionsModal()" aria-label="Cerrar lista" class="w-8 h-8 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-700 cursor-pointer">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Selector rápido entre Seguidores (28) y Seguidos (18) -->
+            <div class="grid grid-cols-2 border-b border-stone-200 text-xs font-semibold">
+                <button id="tabFollowersBtn" onclick="switchConnectionsTab('followers')" class="py-2.5 border-b-2 border-stone-900 text-stone-900 cursor-pointer">
+                    28 seguidores
+                </button>
+                <button id="tabFollowingBtn" onclick="switchConnectionsTab('following')" class="py-2.5 border-b-2 border-transparent text-stone-500 hover:text-stone-800 cursor-pointer">
+                    18 seguidos
+                </button>
+            </div>
+
+            <!-- Lista desplazable de personas -->
+            <div id="connectionsListContainer" class="overflow-y-auto p-3 space-y-3 custom-scrollbar flex-1">
+                <!-- Se genera dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           1. BASE DE DATOS DE PUBLICACIONES DE CÉSAR VALLEJO
+        ========================================================================= */
+        const postsData = [
+            {
+                id: 0,
+                image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Cesar-vallejo-niza-1929.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                fallback: "https://placehold.co/600x600/292524/f7f5f0?text=Par%C3%ADs+1929",
+                location: "Parque de Versalles, París",
+                caption: "Otoño en París. Pensando siempre en los Andes y en el pan nuestro de cada día. «Me moriré en París con aguacero, un día del cual tengo ya el recuerdo...»",
+                date: "14 de octubre de 1929",
+                likes: 2845,
+                liked: false,
+                commentAuthor: "georgette_philippart",
+                commentText: "Siempre juntos en cada paso por París, César ❤️"
+            },
+            {
+                id: 1,
+                image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Grupo-Norte-Trujillo-Peru.jpg/500px-Grupo-Norte-Trujillo-Peru.jpg?utm_source=es.wikipedia.org&utm_campaign=parser&utm_content=thumbnail",
+                fallback: "https://placehold.co/600x600/44403c/f7f5f0?text=Bohemia+Trujillana+1916",
+                location: "Trujillo, Perú",
+                caption: "Con los hermanos de la Bohemia Trujillana (Grupo Norte). Noches inolvidables de poesía, filosofía y juventud junto a Antenor Orrego, José Eulogio Garrido y Alcides Spelucín.",
+                date: "22 de mayo de 1916",
+                likes: 1930,
+                liked: false,
+                commentAuthor: "antenor.orrego",
+                commentText: "Tu voz poética ya anunciaba una revolución en toda América."
+            },
+            {
+                id: 2,
+                image: "https://www.expreso.com.pe/wp-content/uploads/2022/09/Trilce.jpg",
+                fallback: "https://placehold.co/600x600/d6d3d1/1c1917?text=TRILCE+(1922)",
+                location: "Lima, Perú",
+                caption: "Recién salido de los talleres tipográficos de la Penitenciaría de Lima: TRILCE. «Quién hace tanta bulla y ni deja testar las islas que van quedando.»",
+                date: "15 de octubre de 1922",
+                likes: 3412,
+                liked: false,
+                commentAuthor: "jcmariategui",
+                commentText: "Trilce marca el orto de una nueva poesía en el Perú, compañero Vallejo."
+            },
+            {
+                id: 3,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbp7cbcUOFhnst2EWsBgFo6NMNceM6F6lV6rqjthU8SUl7WyU4C9-Z6EQ&s=10",
+                fallback: "https://placehold.co/600x600/57534e/f7f5f0?text=C%C3%A9sar+y+Georgette",
+                location: "Montparnasse, París",
+                caption: "Caminando por las calles de París junto a Georgette Philippart, compañera de vida y guardiana de mis manuscritos.",
+                date: "5 de mayo de 1929",
+                likes: 2610,
+                liked: false,
+                commentAuthor: "juan.larrea",
+                commentText: "Un abrazo fraterno desde Madrid, querido César."
+            },
+            {
+                id: 4,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS40-4fOaJ-YB2bunWKhJ9V0oBSQVpxEu5fnezevoYARBnytDi5uSmQLVs&s=10",
+                fallback: "https://placehold.co/600x600/78716c/f7f5f0?text=Santiago+de+Chuco",
+                location: "Santiago de Chuco, La Libertad",
+                caption: "Nostalgia del hogar paterno, los poyos de la casa y los desayunos de mi madre en la sierra liberteña.",
+                date: "16 de marzo de 1918",
+                likes: 2150,
+                liked: false,
+                commentAuthor: "alcides.spelucin",
+                commentText: "La tierra santiaguina vive en cada uno de tus versos."
+            },
+            {
+                id: 5,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUh13w8MedzzskFaNChqL4BYIWN2QJU2J0G40npbNvfMbqjFr7HcEkg9A&s=10",
+                fallback: "https://placehold.co/600x600/292524/f7f5f0?text=Madrid+1930",
+                location: "Madrid, España",
+                caption: "Tarde de tertulia literaria en Madrid preparando la segunda edición de Trilce con grandes amigos poetas.",
+                date: "10 de julio de 1930",
+                likes: 1785,
+                liked: false,
+                commentAuthor: "gerardo.diego",
+                commentText: "Honor inmenso acompañar la publicación madrileña de Trilce."
+            },
+            {
+                id: 6,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSku_4xHhBch-oE38FLEAaYKHj6LpZksPlubVc2q_5UxEoc45PWGq2NyM0&s=10",
+                fallback: "https://placehold.co/600x600/1c1917/f7f5f0?text=Los+Heraldos+Negros",
+                location: "Lima, Perú",
+                caption: "Mi primer libro de versos: Los heraldos negros. «Hay golpes en la vida, tan fuertes... ¡Yo no sé! Golpes como del odio de Dios...»",
+                date: "26 de julio de 1919",
+                likes: 4120,
+                liked: false,
+                commentAuthor: "abraham.valdelomar",
+                commentText: "¡Hermano mío! Eres un poeta verdadero y profundo."
+            },
+            {
+                id: 7,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZCxD2Yta4YSQapz5wQ0mYngQBe-ZedOTnMOgnwDzeY8Ru7VVAs2XQ-lkQ&s=10",
+                fallback: "https://placehold.co/600x600/44403c/f7f5f0?text=Niza%2C+Francia",
+                location: "Niza, Costa Azul",
+                caption: "Breve respiro frente al Mediterráneo antes de regresar al trabajo periodístico y a la escritura de Poemas humanos.",
+                date: "18 de agosto de 1929",
+                likes: 1640,
+                liked: false,
+                commentAuthor: "pablo.abril",
+                commentText: "Me alegra verte recuperando fuerzas, querido hermano."
+            },
+            {
+                id: 8,
+                image: "https://imgv2-1-f.scribdassets.com/img/document/606159478/original/5ac2cc5800/1?v=1",
+                fallback: "https://placehold.co/600x600/57534e/f7f5f0?text=Espa%C3%B1a%2C+aparta+de+m%C3%AD+este+c%C3%A1liz",
+                location: "Valencia & Madrid, España",
+                caption: "«¡Niños del mundo, si cae España —digo, es un decir— si cae del cielo abajo su antebrazo que asen, en cabestro, dos láminas terrestres...»",
+                date: "3 de noviembre de 1937",
+                likes: 3890,
+                liked: false,
+                commentAuthor: "pablo.neruda",
+                commentText: "Tu palabra solidaria resuena en toda España y América."
+            }
+        ];
+
+        /* =========================================================================
+           2. CÍRCULO DE AMIGOS E INTELECTUALES DE CÉSAR VALLEJO (28 PERSONAS)
+           - Primeros 18: Seguidos mutuamente -> Botón "Mensaje"
+           - Últimos 10: Seguidores que aún no sigue -> Botón "Seguir"
+        ========================================================================= */
+        const followersData = [
+            // --- LOS 18 SEGUIDOS (Tienen botón "Mensaje") ---
+            {
+                username: "georgette_philippart",
+                displayName: "Georgette Philippart",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-NJJ2QFb2TAm3NaTIVuSlJ8gnIFyUhshVu2wKpEnSzNNFNv6EwWlam7A&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "antenor.orrego",
+                displayName: "Antenor Orrego",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR031Eo9H82XRpAHoD7_qtbtdSPnAqHvUqsmSp6PwwCWQ&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "juan.larrea",
+                displayName: "Juan Larrea",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxpr8VuDonJgLXk5418941kQJVvki_w7eXBG9U6BQxQ&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "pablo.abril",
+                displayName: "Pablo Abril de Vivero",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/1/15/Pablo_Abril_de_Vivero.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "jcmariategui",
+                displayName: "José Carlos Mariátegui",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNju6CHiOTXQg-kra4RAWMiNbZ9sRUf43pRVoAhDuevw&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "alcides.spelucin",
+                displayName: "Alcides Spelucín",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/0/05/Alcides_Spelucin.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "hayadelatorre.vr",
+                displayName: "Víctor Raúl Haya de la Torre",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/e/e8/V%C3%ADctor_Ra%C3%BAl_Haya_de_la_Torre.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "abraham.valdelomar",
+                displayName: "Abraham Valdelomar",
+                avatar: "https://www.miraflores.gob.pe/wp-content/uploads/2021/04/Abraham_Valdelomar.JPG.jpg",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "joseeulogio.garrido",
+                displayName: "José Eulogio Garrido",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/7/70/Jose_Eulogio_Garrido.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "alfonso.desilva",
+                displayName: "Alfonso de Silva",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yoPjfzIA8ldO63obfUf7czO025DiFVmA5wI2dppBFx2Fsar8ZVV7gTg&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "macedonio.delatorre",
+                displayName: "Macedonio de la Torre",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShl8tzyjmz2KrnJFseRhpPsYtNHBw3yTv7Bgd5gNRG1KZOZfJNqAUD0AQk&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "gerardo.diego",
+                displayName: "Gerardo Diego",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS0eysNjJz-uvCxBNxgbp28oxuS6mdVcA0WDYUjXl8pQ&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "pablo.neruda",
+                displayName: "Pablo Neruda",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/8/86/Pablo_Neruda_1963.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "vicente.huidobro",
+                displayName: "Vicente Huidobro",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/6/61/Vicente_huidobro.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "xavier.abril",
+                displayName: "Xavier Abril",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpMn2kJwV6rj8LrNQOCoa4GXKIiCYdyBMX4AxFW9OXsg&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "gonzalo.more",
+                displayName: "Gonzalo More",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsPLYdD_iYtfUZ92HmEsWmcji9p7FRCy34HysOyJ1tVyA4vrCujuXN-cbu&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "jose.bergamin",
+                displayName: "José Bergamín",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9KT1SkveipvWNgkeOeHEzfGuKUfpm8tMAAM926blQiA&s=10",
+                isMutual: true,
+                btnPressed: false
+            },
+            {
+                username: "alejo.carpentier",
+                displayName: "Alejo Carpentier",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/d/de/Alejo_Carpentier_c._1955.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: true,
+                btnPressed: false
+            },
+
+            // --- LOS OTROS 10 SEGUIDORES (Tienen botón "Seguir") ---
+            {
+                username: "miguel.deunamuno",
+                displayName: "Miguel de Unamuno",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/2/29/Miguel_de_Unamuno_Meurisse_1925.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "federico.garcialorca",
+                displayName: "Federico García Lorca",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRu1BAUSvZyaOSKW-kkuvp5y9kIT_qGxatNnetmqSLpF7LKkr6bjnNucY&s=10",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "rafael.alberti",
+                displayName: "Rafael Alberti",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBb4ObwrX1KiElU3van7t8V3biVhoc5kEorUgVIum9Pt1CUfWbr77PXrEq&s=10",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "vicente.aleixandre",
+                displayName: "Vicente Aleixandre",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRahBeT-bZOagaUmhLKV3QGZ_M7Ow6-H4ZRt_ftcrv33yYFcCiomY_2SIQ&s=10",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "alfonso.reyes",
+                displayName: "Alfonso Reyes",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/4/41/Alfonsoreyes1924.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "arturo.uslarpietri",
+                displayName: "Arturo Uslar Pietri",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Arturo_Uslar_Pietri_El_Nacional_%28cropped%29.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "pablo.picasso",
+                displayName: "Pablo Picasso",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "tristan.tzara",
+                displayName: "Tristan Tzara",
+                avatar: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Tristan_Tzara.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "josemaria.eguren",
+                displayName: "José María Eguren",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREFHj29_Y1Hh-qyVkX68XpaAR-LZRJNGZsPOp5vW7uUmqOeZPwymwdsbY&s=10g",
+                isMutual: false,
+                btnPressed: false
+            },
+            {
+                username: "manuel.gonzalezprada",
+                displayName: "Manuel González Prada",
+                avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTGGucDCmG-MecqWAm_g0CflIvf-lqfv-DkmTjg5luv-wMWPXV-eYGSevb&s=10",
+                isMutual: false,
+                btnPressed: false
+            }
+        ];
+
+        /* =========================================================================
+           3. ESTADO GLOBAL Y RENDERIZADO DE PUBLICACIONES
+        ========================================================================= */
+        let currentPostIndex = 0;
+        let isMainProfileFollowed = false;
+        let followersCount = 28;
+        let currentConnectionsTab = 'followers';
+
+        function renderPostsGrid() {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = postsData.map((post, index) => `
+                <div 
+                    onclick="openPostModal(${index})"
+                    class="group relative aspect-square bg-stone-200 overflow-hidden cursor-pointer sm:rounded-md"
+                >
+                    <img 
+                        src="${post.image}" 
+                        alt="Publicación de César Vallejo ${index + 1}"
+                        onerror="this.src='${post.fallback}'"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    >
+                    <!-- Overlay estilo Instagram al pasar el cursor -->
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-5 text-white font-bold text-sm sm:text-base">
+                        <div class="flex items-center gap-1.5">
+                            <i class="ph-fill ph-heart text-xl ${post.liked ? 'text-red-500' : 'text-white'}"></i>
+                            <span>${post.likes.toLocaleString('es-PE')}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="ph-fill ph-chat-circle text-xl"></i>
+                            <span>12</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* =========================================================================
+           4. INTERACTIVIDAD DEL BOTÓN PRINCIPAL "SEGUIR" -> "SIGUIENDO"
+        ========================================================================= */
+        const mainFollowBtn = document.getElementById('mainFollowBtn');
+        mainFollowBtn.addEventListener('click', () => {
+            isMainProfileFollowed = !isMainProfileFollowed;
+            const countDisplay = document.getElementById('followersCountDisplay');
+
+            if (isMainProfileFollowed) {
+                mainFollowBtn.textContent = 'Siguiendo';
+                mainFollowBtn.classList.remove('bg-[#0095f6]', 'text-white', 'hover:bg-[#1877f2]');
+                mainFollowBtn.classList.add('bg-stone-200', 'text-stone-900', 'hover:bg-stone-300');
+                countDisplay.textContent = followersCount + 1;
+            } else {
+                mainFollowBtn.textContent = 'Seguir';
+                mainFollowBtn.classList.remove('bg-stone-200', 'text-stone-900', 'hover:bg-stone-300');
+                mainFollowBtn.classList.add('bg-[#0095f6]', 'text-white', 'hover:bg-[#1877f2]');
+                countDisplay.textContent = followersCount;
+            }
+        });
+
+        /* =========================================================================
+           5. INTERACTIVIDAD DE FOTO DE PERFIL EN GRANDE
+        ========================================================================= */
+        const profilePicBtn = document.getElementById('profilePicBtn');
+        const avatarModal = document.getElementById('avatarModal');
+
+        profilePicBtn.addEventListener('click', () => {
+            avatarModal.classList.remove('hidden');
+            avatarModal.classList.add('flex');
+        });
+
+        function closeAvatarModal() {
+            avatarModal.classList.add('hidden');
+            avatarModal.classList.remove('flex');
+        }
+
+        /* =========================================================================
+           6. MODAL DE PUBLICACIÓN EN GRANDE Y BOTÓN ME GUSTA EN ROJO
+        ========================================================================= */
+        const postModal = document.getElementById('postModal');
+
+        function openPostModal(index) {
+            currentPostIndex = index;
+            const post = postsData[index];
+
+            const imgEl = document.getElementById('modalPostImg');
+            imgEl.src = post.image;
+            imgEl.onerror = () => { imgEl.src = post.fallback; };
+
+            document.getElementById('modalPostLocation').textContent = post.location;
+            document.getElementById('modalPostCaption').textContent = post.caption;
+            document.getElementById('modalPostDate').textContent = post.date;
+            document.getElementById('modalCommentAuthor').textContent = post.commentAuthor;
+            document.getElementById('modalCommentText').textContent = post.commentText;
+            document.getElementById('modalLikesCount').textContent = post.likes.toLocaleString('es-PE');
+
+            updateHeartVisualState(post.liked, false);
+
+            postModal.classList.remove('hidden');
+            postModal.classList.add('flex');
+        }
+
+        function closePostModal() {
+            postModal.classList.add('hidden');
+            postModal.classList.remove('flex');
+            renderPostsGrid();
+        }
+
+        function togglePostLike() {
+            const post = postsData[currentPostIndex];
+            post.liked = !post.liked;
+            post.likes += post.liked ? 1 : -1;
+
+            document.getElementById('modalLikesCount').textContent = post.likes.toLocaleString('es-PE');
+            updateHeartVisualState(post.liked, true);
+        }
+
+        function updateHeartVisualState(isLiked, animate) {
+            const heartSvg = document.getElementById('modalHeartSvg');
+            if (isLiked) {
+                heartSvg.setAttribute('fill', '#ed4956');
+                heartSvg.setAttribute('stroke', '#ed4956');
+                heartSvg.classList.remove('text-stone-800');
+                heartSvg.classList.add('text-[#ed4956]');
+            } else {
+                heartSvg.setAttribute('fill', 'none');
+                heartSvg.setAttribute('stroke', 'currentColor');
+                heartSvg.classList.remove('text-[#ed4956]');
+                heartSvg.classList.add('text-stone-800');
+            }
+
+            if (animate) {
+                heartSvg.classList.remove('heart-animate');
+                void heartSvg.offsetWidth; // Reiniciar animación CSS
+                heartSvg.classList.add('heart-animate');
+            }
+        }
+
+        /* =========================================================================
+           7. MODAL DE 28 SEGUIDORES Y 18 SEGUIDOS
+           Con botón "Mensaje" (18) y "Seguir" (10) que cambian a #60afdb al presionar
+        ========================================================================= */
+        const connectionsModal = document.getElementById('connectionsModal');
+
+        function openFollowersModal(tab) {
+            currentConnectionsTab = tab;
+            connectionsModal.classList.remove('hidden');
+            connectionsModal.classList.add('flex');
+            switchConnectionsTab(tab);
+        }
+
+        function closeConnectionsModal() {
+            connectionsModal.classList.add('hidden');
+            connectionsModal.classList.remove('flex');
+        }
+
+        function switchConnectionsTab(tab) {
+            currentConnectionsTab = tab;
+            const titleEl = document.getElementById('connectionsModalTitle');
+            const tabFollowers = document.getElementById('tabFollowersBtn');
+            const tabFollowing = document.getElementById('tabFollowingBtn');
+
+            if (tab === 'followers') {
+                titleEl.textContent = 'Seguidores';
+                tabFollowers.classList.add('border-stone-900', 'text-stone-900');
+                tabFollowers.classList.remove('border-transparent', 'text-stone-500');
+                tabFollowing.classList.remove('border-stone-900', 'text-stone-900');
+                tabFollowing.classList.add('border-transparent', 'text-stone-500');
+            } else {
+                titleEl.textContent = 'Seguidos';
+                tabFollowing.classList.add('border-stone-900', 'text-stone-900');
+                tabFollowing.classList.remove('border-transparent', 'text-stone-500');
+                tabFollowers.classList.remove('border-stone-900', 'text-stone-900');
+                tabFollowers.classList.add('border-transparent', 'text-stone-500');
+            }
+
+            renderConnectionsList();
+        }
+
+        function renderConnectionsList() {
+            const container = document.getElementById('connectionsListContainer');
+            // Si es 'followers' muestra los 28; si es 'following' muestra los 18 seguidos + los nuevos seguidos desde la lista
+            const listToShow = currentConnectionsTab === 'followers'
+                ? followersData
+                : followersData.filter(person => person.isMutual || person.btnPressed);
+
+            container.innerHTML = listToShow.map((person) => {
+                // Encontrar índice real en followersData
+                const realIndex = followersData.findIndex(p => p.username === person.username);
+                const label = person.isMutual
+                    ? 'Mensaje'
+                    : (person.btnPressed ? 'Siguiendo' : 'Seguir');
+
+                // Si el botón fue presionado, adquiere exactamente el color #60afdb
+                const btnStyle = person.btnPressed
+                    ? 'background-color: #60afdb; color: #ffffff;'
+                    : person.isMutual
+                        ? 'background-color: #efefef; color: #1c1917;'
+                        : 'background-color: #0095f6; color: #ffffff;';
+
+                const initials = person.displayName.split(' ').slice(0, 2).map(n => n[0]).join('');
+
+                return `
+                    <div class="flex items-center justify-between gap-3 py-1 px-1 rounded-xl hover:bg-stone-50 transition">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <img 
+                                src="${person.avatar}" 
+                                alt="${person.displayName}"
+                                onerror="this.src='https://placehold.co/100x100/e7e5e4/292524?text=${encodeURIComponent(initials)}'"
+                                class="w-11 h-11 rounded-full object-cover grayscale border border-stone-200 flex-shrink-0"
+                            >
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold text-stone-900 truncate">${person.username}</p>
+                                <p class="text-xs text-stone-500 truncate">${person.displayName}</p>
+                            </div>
+                        </div>
+
+                        <button 
+                            type="button"
+                            onclick="handleConnectionBtnClick(${realIndex})"
+                            style="${btnStyle}"
+                            class="px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer flex-shrink-0 active:scale-95"
+                        >
+                            ${label}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Cambia el color del botón "Mensaje" o "Seguir" a #60afdb al presionarlo y actualiza la lista de seguidos
+        function handleConnectionBtnClick(index) {
+            followersData[index].btnPressed = !followersData[index].btnPressed;
+            updateFollowingCounters();
+            renderConnectionsList();
+        }
+
+        function updateFollowingCounters() {
+            const totalFollowing = followersData.filter(p => p.isMutual || p.btnPressed).length;
+            const mainFollowingEl = document.getElementById('followingCountDisplay');
+            const tabFollowingEl = document.getElementById('tabFollowingBtn');
+            if (mainFollowingEl) mainFollowingEl.textContent = totalFollowing;
+            if (tabFollowingEl) tabFollowingEl.textContent = `${totalFollowing} seguidos`;
+        }
+
+        // Cerrar modales al hacer clic fuera del contenedor o presionar Escape
+        postModal.addEventListener('click', (e) => {
+            if (e.target === postModal) closePostModal();
+        });
+        connectionsModal.addEventListener('click', (e) => {
+            if (e.target === connectionsModal) closeConnectionsModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePostModal();
+                closeAvatarModal();
+                closeConnectionsModal();
+            }
+        });
+
+        // Inicializar cuadrícula al cargar
+        renderPostsGrid();
+    </script>
+</body>
+</html>x
